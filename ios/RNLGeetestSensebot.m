@@ -36,8 +36,6 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)option)
         _manager = [GT3CaptchaManager alloc];
         _manager.delegate = self;
         _manager.viewDelegate = self;
-    }
-    @try {
         // view load timeout
         NSTimeInterval timeout = [RCTConvert NSTimeInterval:option[@"loadTimeout"]];
         // init manager
@@ -67,6 +65,8 @@ RCT_EXPORT_METHOD(start:(NSDictionary *)option)
             [_manager useVisualViewWithEffect:
              [UIBlurEffect effectWithStyle:(UIBlurEffectStyle)blurEffectStyle]];
         }
+    }
+    @try {
         // api1 json result
         NSDictionary *api1JSON = RCTJSONParse([RCTConvert NSString:option[@"api1Result"]], nil);
         [_manager configureGTest:[api1JSON objectForKey:@"gt"]
